@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { useCalendar } from '../hooks/useCalendar'
-import { getLocale } from '../locales'
+import { useCalendar } from './hooks/useCalendar.js'
+import { getLocale } from './locales/index.js'
 import {
   formatDate,
   parseDate,
@@ -9,7 +9,7 @@ import {
   isBetween,
   setTime,
   getDayOfWeek,
-} from '../utils/dateUtils'
+} from './utils/dateUtils.js'
 import './DateTimePicker.css'
 
 /**

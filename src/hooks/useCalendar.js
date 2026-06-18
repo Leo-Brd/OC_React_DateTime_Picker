@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { getDaysGrid, addMonths, cloneDate, getToday } from '../utils/dateUtils'
+import { getDaysGrid, addMonths, cloneDate, getToday } from '../utils/dateUtils.js'
 
 /**
  * Hook pour gérer la logique du calendrier

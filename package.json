@@ -1,0 +1,54 @@
+{
+  "name": "@hrnet/react-datetimepicker",
+  "version": "1.0.0",
+  "description": "React DateTimePicker component - A modern React replacement for jQuery DateTimePicker",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "^5.3.3",
+    "vite": "^8.0.12"
+  },
+  "keywords": [
+    "react",
+    "datetimepicker",
+    "datepicker",
+    "timepicker",
+    "calendar",
+    "date",
+    "time",
+    "component"
+  ],
+  "author": "YourName",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/react-datetimepicker"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/react-datetimepicker/issues"
+  },
+  "homepage": "https://github.com/yourusername/react-datetimepicker#readme"
+}

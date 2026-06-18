@@ -1,0 +1,304 @@
+/**
+ * Styles pour le composant DateTimePicker
+ */
+
+:root {
+  --dtp-primary-color: #3b82f6;
+  --dtp-hover-color: #1e40af;
+  --dtp-border-color: #e5e7eb;
+  --dtp-text-color: #1f2937;
+  --dtp-bg-color: #ffffff;
+  --dtp-disabled-color: #d1d5db;
+  --dtp-today-color: #fbbf24;
+  --dtp-selected-color: #3b82f6;
+  --dtp-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --dtp-radius: 0.5rem;
+  --dtp-spacing: 0.5rem;
+}
+
+.dtp-container {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+}
+
+/* Input wrapper */
+.dtp-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--dtp-bg-color);
+  border: 1px solid var(--dtp-border-color);
+  border-radius: var(--dtp-radius);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.dtp-input-wrapper:focus-within {
+  border-color: var(--dtp-primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.dtp-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--dtp-text-color);
+  background: transparent;
+}
+
+.dtp-input:disabled {
+  background-color: var(--dtp-disabled-color);
+  cursor: not-allowed;
+  color: #999;
+}
+
+.dtp-input::placeholder {
+  color: #999;
+}
+
+.dtp-toggle-btn {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: background-color 0.2s;
+}
+
+.dtp-toggle-btn:hover:not(:disabled) {
+  background-color: #f3f4f6;
+}
+
+.dtp-toggle-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Picker */
+.dtp-picker {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background-color: var(--dtp-bg-color);
+  border: 1px solid var(--dtp-border-color);
+  border-radius: var(--dtp-radius);
+  box-shadow: var(--dtp-shadow);
+  z-index: 1000;
+  padding: 1rem;
+  min-width: 350px;
+  animation: dtp-popup 0.15s ease-out;
+}
+
+@keyframes dtp-popup {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.dtp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.dtp-month-year {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--dtp-text-color);
+  min-width: 180px;
+  text-align: center;
+}
+
+.dtp-nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--dtp-border-color);
+  background-color: var(--dtp-bg-color);
+  border-radius: var(--dtp-radius);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--dtp-text-color);
+}
+
+.dtp-nav-btn:hover {
+  background-color: #f3f4f6;
+  border-color: var(--dtp-primary-color);
+}
+
+.dtp-nav-btn:active {
+  background-color: var(--dtp-primary-color);
+  color: white;
+  border-color: var(--dtp-primary-color);
+}
+
+/* Calendrier */
+.dtp-calendar {
+  margin-bottom: 1rem;
+}
+
+.dtp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--dtp-spacing);
+  margin-bottom: 0.5rem;
+}
+
+.dtp-weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+}
+
+.dtp-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--dtp-spacing);
+}
+
+.dtp-day {
+  aspect-ratio: 1;
+  border: 1px solid var(--dtp-border-color);
+  background-color: var(--dtp-bg-color);
+  border-radius: var(--dtp-radius);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--dtp-text-color);
+  transition: all 0.2s;
+}
+
+.dtp-day:hover:not(:disabled) {
+  background-color: #f3f4f6;
+  border-color: var(--dtp-primary-color);
+}
+
+.dtp-day:not(:disabled):active {
+  background-color: var(--dtp-primary-color);
+  color: white;
+  border-color: var(--dtp-primary-color);
+}
+
+.dtp-day.dtp-today {
+  background-color: var(--dtp-today-color);
+  color: #000;
+  font-weight: 700;
+  border-color: var(--dtp-today-color);
+}
+
+.dtp-day.dtp-selected {
+  background-color: var(--dtp-selected-color);
+  color: white;
+  border-color: var(--dtp-selected-color);
+}
+
+.dtp-day.dtp-disabled {
+  background-color: #f9fafb;
+  color: var(--dtp-disabled-color);
+  border-color: var(--dtp-border-color);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dtp-day:empty {
+  border: none;
+  background: transparent;
+  cursor: default;
+}
+
+/* Time Picker */
+.dtp-time {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #f9fafb;
+  border-radius: var(--dtp-radius);
+}
+
+.dtp-time label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.dtp-time-input {
+  width: 3rem;
+  padding: 0.35rem;
+  border: 1px solid var(--dtp-border-color);
+  border-radius: var(--dtp-radius);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.dtp-time-input:focus {
+  outline: none;
+  border-color: var(--dtp-primary-color);
+}
+
+/* Actions */
+.dtp-actions {
+  display: flex;
+  gap: var(--dtp-spacing);
+}
+
+.dtp-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--dtp-border-color);
+  border-radius: var(--dtp-radius);
+  background-color: var(--dtp-bg-color);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  color: var(--dtp-text-color);
+}
+
+.dtp-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.dtp-btn-today {
+  border-color: var(--dtp-today-color);
+}
+
+.dtp-btn-today:hover {
+  background-color: var(--dtp-today-color);
+  color: #000;
+}
+
+.dtp-btn-clear:hover {
+  background-color: #fee2e2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .dtp-picker {
+    min-width: 100vw;
+    max-width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dtp-time {
+    flex-direction: column;
+  }
+}

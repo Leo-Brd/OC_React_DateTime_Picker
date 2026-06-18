@@ -7,17 +7,27 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
-      name: 'ReactDateTimePicker',
-      fileName: (format) => `index.${format === 'es' ? 'esm' : 'umd'}.js`
+      name: 'ReactDateTimePicker'
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
+      output: [
+        {
+          format: 'es',
+          entryFileNames: 'index.esm.js',
+          dir: 'dist'
+        },
+        {
+          format: 'umd',
+          name: 'ReactDateTimePicker',
+          entryFileNames: 'index.umd.js',
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM'
+          },
+          dir: 'dist'
         }
-      }
+      ]
     }
   }
 })

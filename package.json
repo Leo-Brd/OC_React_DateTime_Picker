@@ -1,5 +1,5 @@
 {
-  "name": "@hrnet/react-datetimepicker",
+  "name": "@Leo-Brd/react-datetimepicker",
   "version": "1.0.0",
   "description": "React DateTimePicker component - A modern React replacement for jQuery DateTimePicker",
   "main": "dist/index.umd.js",
@@ -45,10 +45,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/react-datetimepicker"
+    "url": "https://github.com/Leo-Brd/OC_React_DateTime_Picker.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/react-datetimepicker/issues"
+    "url": "https://github.com/Leo-Brd/OC_React_DateTime_Picker/issues"
   },
-  "homepage": "https://github.com/yourusername/react-datetimepicker#readme"
+  "homepage": "https://github.com/Leo-Brd/OC_React_DateTime_Picker#readme"
 }

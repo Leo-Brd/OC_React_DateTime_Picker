@@ -195,19 +195,21 @@ function DateTimePicker({
           onClick={() => !disabled && setIsOpen(!isOpen)}
           disabled={disabled}
           aria-label="Open date picker"
+          type="button"
         >
           📅
         </button>
       </div>
 
       {isOpen && !disabled && (
-        <div className="dtp-picker">
+        <div className="dtp-picker" onMouseDown={(e) => e.stopPropagation()}>
           {/* Header avec mois/année et navigation */}
           <div className="dtp-header">
             <button
               className="dtp-nav-btn dtp-prev"
               onClick={() => calendar.goToPreviousMonth()}
               aria-label="Previous month"
+              type="button"
             >
               ‹
             </button>
@@ -218,6 +220,7 @@ function DateTimePicker({
               className="dtp-nav-btn dtp-next"
               onClick={() => calendar.goToNextMonth()}
               aria-label="Next month"
+              type="button"
             >
               ›
             </button>
@@ -253,6 +256,7 @@ function DateTimePicker({
                       disabled={isDisabled}
                       aria-label={day ? `${day} ${loc.months[calendar.currentMonth.getMonth()]}` : undefined}
                       aria-pressed={isSelected}
+                      type="button"
                     >
                       {day}
                     </button>
@@ -303,10 +307,10 @@ function DateTimePicker({
 
           {/* Actions */}
           <div className="dtp-actions">
-            <button className="dtp-btn dtp-btn-today" onClick={() => calendar.selectToday()}>
+            <button className="dtp-btn dtp-btn-today" onClick={() => calendar.selectToday()} type="button">
               {loc.today}
             </button>
-            <button className="dtp-btn dtp-btn-clear" onClick={() => { calendar.clearDate(); onChange(null); setIsOpen(false) }}>
+            <button className="dtp-btn dtp-btn-clear" onClick={() => { calendar.clearDate(); onChange(null); setIsOpen(false) }} type="button">
               {loc.clear}
             </button>
           </div>

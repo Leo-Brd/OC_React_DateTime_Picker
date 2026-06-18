@@ -2,7 +2,7 @@
   "name": "@hrnet/react-datetimepicker",
   "version": "1.0.0",
   "description": "React DateTimePicker component - A modern React replacement for jQuery DateTimePicker",
-  "main": "dist/index.js",
+  "main": "dist/index.umd.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [

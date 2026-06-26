@@ -7,13 +7,11 @@ export default defineConfig({
     lib: {
       entry: 'src/index.js',
       name: 'ReactDateTimePicker',
-      fileName: (format) => {
-        if (format === 'es') return 'index.esm.js'
-        return 'index.umd.js'
-      }
+      formats: ['es'],
+      fileName: () => 'index.esm.js'
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
       output: {
         globals: {
           react: 'React',

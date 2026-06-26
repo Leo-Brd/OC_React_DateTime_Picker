@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import { useState, useRef, useEffect } from 'react'
 import { useCalendar } from './hooks/useCalendar.js'
 import { getLocale } from './locales/index.js'
 import {
@@ -318,18 +317,6 @@ function DateTimePicker({
       )}
     </div>
   )
-}
-
-DateTimePicker.propTypes = {
-  value: PropTypes.instanceOf(Date),
-  onChange: PropTypes.func,
-  format: PropTypes.string,
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  timepicker: PropTypes.bool,
-  minDate: PropTypes.instanceOf(Date),
-  maxDate: PropTypes.instanceOf(Date),
-  locale: PropTypes.string,
 }
 
 export default DateTimePicker

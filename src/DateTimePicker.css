@@ -238,17 +238,34 @@
 }
 
 .dtp-time-input {
-  width: 3rem;
-  padding: 0.35rem;
-  border: 1px solid var(--dtp-border-color);
-  border-radius: var(--dtp-radius);
-  font-size: 0.875rem;
-  text-align: center;
+  width: 3rem !important;
+  padding: 0.5rem !important;
+  border: 1px solid var(--dtp-border-color) !important;
+  border-radius: var(--dtp-radius) !important;
+  font-size: 0.875rem !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  color: var(--dtp-text-color) !important;
+  background: #fff !important;
+  font-family: inherit !important;
+  outline: none !important;
+  transition: border-color 0.2s !important;
+}
+
+/* Cacher les spinners natifs */
+.dtp-time-input::-webkit-outer-spin-button,
+.dtp-time-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.dtp-time-input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .dtp-time-input:focus {
-  outline: none;
-  border-color: var(--dtp-primary-color);
+  outline: none !important;
+  border-color: var(--dtp-primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15) !important;
 }
 
 /* Actions */

@@ -59,6 +59,9 @@ function DateTimePicker({
       setSeconds(value.getSeconds())
     } else {
       setInputValue('')
+      setHours(0)
+      setMinutes(0)
+      setSeconds(0)
     }
   }, [value, format])
 
@@ -81,6 +84,9 @@ function DateTimePicker({
     if (!isOpen) return
 
     const handleKeyDown = (e) => {
+      // Ne pas intercepter les touches si un input d'heure est actif
+      if (document.activeElement?.classList.contains('dtp-time-input')) return
+
       switch (e.key) {
         case 'Escape':
           setIsOpen(false)
@@ -137,22 +143,30 @@ function DateTimePicker({
     }
   }
 
-  const handleTimeChange = (type, value) => {
-    let h = hours
-    let m = minutes
-    let s = seconds
+  const handleTimeChange = (type, rawValue) => {
+    const parsed = parseInt(rawValue) || 0
+    const max = type === 'hour' ? 23 : 59
+    const val = Math.max(0, Math.min(max, parsed))
 
-    if (type === 'hour') h = Math.max(0, Math.min(23, parseInt(value) || 0))
-    if (type === 'minute') m = Math.max(0, Math.min(59, parseInt(value) || 0))
-    if (type === 'second') s = Math.max(0, Math.min(59, parseInt(value) || 0))
-
-    setHours(h)
-    setMinutes(m)
-    setSeconds(s)
+    let h = hours, m = minutes, s = seconds
+    if (type === 'hour') { setHours(val); h = val }
+    else if (type === 'minute') { setMinutes(val); m = val }
+    else if (type === 'second') { setSeconds(val); s = val }
 
     if (calendar.selectedDate) {
-      const updated = setTime(calendar.selectedDate, h, m, s)
-      onChange(updated)
+      onChange(setTime(calendar.selectedDate, h, m, s))
+    }
+  }
+
+  const handleTimeKeyDown = (type, e) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault()
+      const max = type === 'hour' ? 23 : 59
+      const current = type === 'hour' ? hours : type === 'minute' ? minutes : seconds
+      const newVal = e.key === 'ArrowUp'
+        ? (current + 1) % (max + 1)
+        : (current === 0 ? max : current - 1)
+      handleTimeChange(type, String(newVal))
     }
   }
 
@@ -274,8 +288,10 @@ function DateTimePicker({
                   type="number"
                   min="0"
                   max="23"
-                  value={String(hours).padStart(2, '0')}
+                  value={hours}
                   onChange={(e) => handleTimeChange('hour', e.target.value)}
+                  onKeyDown={(e) => handleTimeKeyDown('hour', e)}
+                  onClick={(e) => e.target.select()}
                   className="dtp-time-input"
                 />
               </label>
@@ -285,8 +301,10 @@ function DateTimePicker({
                   type="number"
                   min="0"
                   max="59"
-                  value={String(minutes).padStart(2, '0')}
+                  value={minutes}
                   onChange={(e) => handleTimeChange('minute', e.target.value)}
+                  onKeyDown={(e) => handleTimeKeyDown('minute', e)}
+                  onClick={(e) => e.target.select()}
                   className="dtp-time-input"
                 />
               </label>
@@ -296,8 +314,10 @@ function DateTimePicker({
                   type="number"
                   min="0"
                   max="59"
-                  value={String(seconds).padStart(2, '0')}
+                  value={seconds}
                   onChange={(e) => handleTimeChange('second', e.target.value)}
+                  onKeyDown={(e) => handleTimeKeyDown('second', e)}
+                  onClick={(e) => e.target.select()}
                   className="dtp-time-input"
                 />
               </label>
